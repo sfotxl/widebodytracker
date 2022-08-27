@@ -1,22 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchURL } from '../../fetchURL';
 
 export const fetchFlights = createAsyncThunk(
   'flights/fetchFlights',
   async () => {
-    const unixTime = Math.floor(new Date().getTime() / 1000);
-    console.log('unixTime', unixTime);
-    const unixTimeMinusDay = unixTime - 8640000;
-    const unixTimePlusHour = unixTime + 360000;
-    console.log('unixTimePlusHour: ', unixTimePlusHour);
-    const fetchURL =
-      'https://opensky-network.org/api/flights/arrival?airport=KIAH&begin=' +
-      unixTimeMinusDay +
-      '&end=' +
-      unixTimePlusHour;
+    // const unixTime = Math.floor(new Date().getTime() / 1000);
+    // console.log('unixTime', unixTime);
+    // const unixTimeMinusDay = unixTime - 86400;
+    // const unixTimePlusHour = unixTime + 36000;
+    // console.log('unixTimePlusHour: ', unixTimePlusHour);
+    // const fetchURL =
+    //   'https://opensky-network.org/api/flights/arrival?airport=KIAH&begin=' +
+    //   unixTimeMinusDay +
+    //   '&end=' +
+    //   unixTimePlusHour;
+
     console.log('fetchURL: ', fetchURL);
     const response = await fetch(fetchURL);
     const data = response.json();
-    console.log('data', data);
+    console.log('data:', data);
     return data;
   }
 );
